@@ -15,6 +15,8 @@
 
 #include <Mahi/Gui/Color.hpp>
 #include <Mahi/Gui/Vec2.hpp>
+#include <glm/vec2.hpp>
+#include <glm/vec4.hpp>
 
 //---- Define assertion handler. Defaults to calling assert().
 //#define IM_ASSERT(_EXPR)  MyAssert(_EXPR)
@@ -61,11 +63,15 @@
 
 #define IM_VEC2_CLASS_EXTRA                                                 \
         ImVec2(const ::mahi::gui::Vec2& f) { x = f.x; y = f.y; }                       \
-        operator ::mahi::gui::Vec2() const { return ::mahi::gui::Vec2(x,y); }
+        operator ::mahi::gui::Vec2() const { return ::mahi::gui::Vec2(x,y); } \
+		ImVec2(const glm::vec2& f) { x = f.x; y = f.y; } \
+		operator glm::vec2() const { return glm::vec2(x, y); } 
 
 #define IM_VEC4_CLASS_EXTRA                                                 \
         ImVec4(const ::mahi::gui::Color& f) { x = f.r; y = f.g; z = f.b; w = f.a; }     \
-        operator ::mahi::gui::Color() const { return {x,y,z,w}; }
+        operator ::mahi::gui::Color() const { return {x,y,z,w}; } \
+		ImVec4(const glm::vec4& f) { x = f.x; x = f.x; x = f.x; x = f.x; } \
+		operator glm::vec4() const { return glm::vec4(x, y); } 
 
 //---- Use 32-bit vertex indices (default is 16-bit) is one way to allow large meshes with more than 64K vertices.
 // Your renderer back-end will need to support it (most example renderer back-ends support both 16/32-bit indices).
